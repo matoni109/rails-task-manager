@@ -1,13 +1,14 @@
-<div class="container">
-  <h1>My Tasks</h1>
-  <div class="task-box">
-    <% @tasks.each do |task|  %>
-      <p><i class="fas fa<%= '-check' if task.completed %>-square"></i>
-        <%= link_to task.title, task_path(task) %>
-      </p>
-    <% end %>
+<div class="container py-3">
+    <h1>My Tasks</h1>
+    <div class="task-box">
+        <% @tasks.each do |task|  %>
+        <p><i class="fas fa<%= '-check' if task.completed %>-square"></i>
+            <%= link_to task.title, task_path(task) %>
+        </p>
+        <% end %>
+    </div>
     <p>
-      <p>  <%= link_to "add a new task", new_task_path  %>  </p>
+        <%= link_to "+ add a new task", new_task_path %>
     </p>
-  </div>
+    <!--  <i class="fas fa-circle" style="color: #007bff;"> -->
 </div>

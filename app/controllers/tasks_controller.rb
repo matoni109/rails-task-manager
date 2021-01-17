@@ -2,7 +2,6 @@ class TasksController < ApplicationController
 
   # READ ONE
   def show
-
     @task = Task.find(params[:id])
   end
 
@@ -14,9 +13,11 @@ class TasksController < ApplicationController
   # CREATE
   def create
     @task = Task.new(task_params)
-    @task.save
-    # no need for app/views/restaurants/create.html.erb
-    redirect_to task_path(@task) # restaurants ( pural will take u to All )
+    if @task.save
+      redirect_to task_path(@task)
+    else
+      render :new
+    end
   end
 
   # NEW
@@ -26,19 +27,27 @@ class TasksController < ApplicationController
 
 
   # EDIT
+  def edit
+    @tasks = Task.find(params[:id])
+  end
 
 
   # UPDATE
   def update
     @tasks = Task.find(params[:id])
-    @task.update(task_params)
-    # no need for app/views/tasks/update.html.erb
-    redirect_to task_path(@task)
-
+    if   @tasks.update(task_params)
+      redirect_to task_path(@tasks)
+    else
+      render :edit
+    end
   end
 
-
   # DESTROY
+  def destroy
+    @tasks = Task.find(params[:id])
+    @tasks.destroy
+    redirect_to root_path
+  end
 
 
   private

@@ -1,0 +1,10 @@
+<div class="container py-3 mx-auto">
+    <h1>Edit Task</h1>
+    <%= simple_form_for(@tasks) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :details %>
+    <%= f.input :completed %>
+    <%= f.submit %>
+    <% end %><br>
+    <%= link_to "Back to Tasks", root_path %>
+</div>
